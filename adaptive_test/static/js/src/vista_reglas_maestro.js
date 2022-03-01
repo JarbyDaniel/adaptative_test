@@ -5,12 +5,14 @@ function ReglasMaestro(runtime, element) {
 
     $('#send', element).click(function(eventObject) {
 
-        var file = document.getElementById("myfile").value
+        var filepdf = document.getElementById("myfilepdf").value
+        var fileaudio = document.getElementById("myfileaudio").value
+        var filevideo = document.getElementById("myfilevideo").value
 
         var selector1 = document.getElementById("selector1")
         var selector2 = document.getElementById("selector2")
         var selector3 = document.getElementById("selector3")
-        var selector4 = document.getElementById("selector4")
+              
 
         var tag = "" 
         
@@ -22,45 +24,58 @@ function ReglasMaestro(runtime, element) {
             }
         }
 
-        for(var i=0; i< selector2.length;i++){
-
-            if (selector2[i].selected===true){
-                var tag = tag + selector2[i].value + "-"
-                console.log('btn clicked',tag);
-            }
-        }
-
-        for(var i=0; i< selector3.length;i++){
-
-            if (selector3[i].selected===true){
-                var tag = tag + selector3[i].value + "-"
-                console.log('btn clicked',tag);
-            }
-        }
-
-        for(var i=0; i< selector4.length;i++){
-
-            if (selector4[i].selected===true){
-                var tag = tag + selector4[i].value
-                console.log('btn clicked',tag);
-            }
-        }
-
 
         $.ajax({
             type: "POST",
             url: handlerUrl,
             data: JSON.stringify({
                 "tag": tag,
-                "resource":file
+                "resource":filepdf
         }),
+        
             success: function(data){
-                var showInfoResource = document.getElementById('info-resource')
-                showInfoResource.innerHTML = ''
-                showInfoResource.innerHTML =JSON.stringify(data.tag)
+                console.log("hola");
+                var showInfoResource1 = document.getElementById('info-resource')
+                showInfoResource1.innerHTML = ''
+                showInfoResource1.innerHTML =JSON.stringify(data.tag)
 
             }
         });
+        $.ajax({
+            type: "POST",
+            url: handlerUrl,
+            data: JSON.stringify({
+                "tag": tag,
+                "resource":fileaudio
+        }),
+        
+            success: function(data){
+                console.log(data);
+                var showInfoResource2 = document.getElementById('info-resource')
+                showInfoResource2.innerHTML = ''
+                showInfoResource2.innerHTML =JSON.stringify(data.tag)
+
+            }
+        });
+        
+        $.ajax({
+            type: "POST",
+            url: handlerUrl,
+            data: JSON.stringify({
+                "tag": tag,
+                "resource":filevideo
+        }),
+        
+            success: function(data){
+                console.log(data);
+                var showInfoResource3 = document.getElementById('info-resource')
+                showInfoResource3.innerHTML = ''
+                showInfoResource3.innerHTML =JSON.stringify(data.tag)
+
+            }
+        });
+
+
     });
     $(function ($) {
         /* Here's where you'd do things on page load. */
@@ -74,11 +89,10 @@ function agregarcontenido(a){
      
     if(tipoagregacion=="pdf"){
         document.getElementById("tipo_contenido").innerHTML = "<h6 class='card-title mb-0' > Seleccionaste subir un archivo PDF </h6>";
-        
         codigo=''+        
     '<form class="d-flex mt-3 flex-wrap" id="estilo_aprendizaje" action=">'+
         '<label class="formFile mt-3 mb-1" for="myfile"> Archivo PDF: </label>'+
-        '<input class="form-control mb-3" type="file" id="myfile" name="myfile">'+
+        '<input class="form-control mb-3" type="file" id="myfilepdf" name="myfile">'+
                     
         '<div class="card me-3">'+
             '<div class="card-header text-white bg-primary">'+
@@ -104,7 +118,7 @@ function agregarcontenido(a){
         codigo=''+        
     '<form class="d-flex mt-3 flex-wrap" id="estilo_aprendizaje" action=">'+
         '<label class="formFile mt-3 mb-1" for="myfile"> Audio mp3: </label>'+
-        '<input class="form-control mb-3" type="file" id="myfile" name="myfile">'+
+        '<input class="form-control mb-3" type="file" id="myfileaudio" name="myfile">'+
                     
         '<div class="card me-3">'+
             '<div class="card-header text-white bg-primary">'+
@@ -130,7 +144,7 @@ function agregarcontenido(a){
         codigo=''+        
     '<form class="d-flex mt-3 flex-wrap" id="estilo_aprendizaje" action=">'+
         '<label class="formFile mt-3 mb-1" for="myfile"> Video: </label>'+
-        '<input class="form-control mb-3" type="file" id="myfile" name="myfile">'+
+        '<input class="form-control mb-3" type="file" id="myfilevideo" name="myfile">'+
                     
         '<div class="card me-3">'+
             '<div class="card-header text-white bg-primary">'+

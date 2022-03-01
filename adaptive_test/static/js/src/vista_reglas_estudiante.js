@@ -193,6 +193,3 @@ function ReglasEstudiante(runtime, element) {
     });
 }
 
-document.getElementById("btnVistaMaestro").addEventListener("click",function(){
-    window.location.href="/scenario/adaptive_test.0/vista_reglas_maestro/"+window.location.search;
-});
