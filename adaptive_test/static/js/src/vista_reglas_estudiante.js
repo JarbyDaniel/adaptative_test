@@ -15,15 +15,31 @@ function ReglasEstudiante(runtime, element) {
                 window.test = data.test;
                 
                 if (data.test_result) {
+                    
                     var resultado = data.test_result.result
+                    if(resultado.includes("Dominante Auditivo")){
+                        var cohorte= "Auditivo";
+                        console.log(cohorte)
+                    }
+                    if(resultado.includes("Dominante Visual")){
+                        var cohorte= "Visual";
+                        console.log(cohorte)
+                    }
+                    if(resultado.includes("Dominante Kinestésico")){
+                        var cohorte= "Kinestetico";
+                        console.log(cohorte)
+                    }
+                   
                     resultado = resultado.replaceAll("<br>"," ").split(" ")
                     
+
                     //console.table(resultado);
 
                     var dim1=resultado[12]
                     var dim2=resultado[17]
                     var dim3=resultado[2]
                     var dim4=resultado[7]
+
 
                     if(resultado[0]=="Equilibrio"){
                         dim3="Equilibrio";
@@ -160,10 +176,14 @@ function ReglasEstudiante(runtime, element) {
             success: function(data){
                 console.table(data)
                 setTimeout(function(){
+                    var tagcohorte1 = data.tag;                    
+                    var tagcohorte = data.map((tag)=>[tag.tag])
+                    console.log(tagcohorte1[14])
                     var resources_list = document.getElementById('resources_allowed')
                     resources_list.innerHTML = ''
 
                     tag_estudiante = tag.split("-")
+                    
 
                     function validacion_tag(data_tag){
                         var data_tag_split = data_tag.split("-")
@@ -193,3 +213,6 @@ function ReglasEstudiante(runtime, element) {
     });
 }
 
+document.getElementById("btnVistaMaestro").addEventListener("click",function(){
+    window.location.href="/scenario/adaptive_test.0/vista_reglas_maestro/"+window.location.search;
+});
