@@ -30,8 +30,9 @@ function ReglasMaestro(runtime, element) {
         }),
             success: function(data){
                 var showInfoResource = document.getElementById('info-resource')
-                showInfoResource.innerHTML = ''
-                showInfoResource.innerHTML =JSON.stringify(data.tag)
+                showInfoResource.innerHTML = ''                
+                //showInfoResource.innerHTML =JSON.stringify(data.tag)
+                showInfoResource.innerHTML ='<br><b>Recurso subido exitosamente</b>'
 
             }
         });
@@ -45,23 +46,97 @@ function agregarcontenido(a){
     tipoagregacion = a;
     var btn = document.getElementById("send")
     btn.removeAttribute("disabled")
-    document.getElementById("tipo_contenido").innerHTML = "<h6 class='card-title mb-0' > Seleccionaste un PDF </h6>";
+    document.getElementById("tipo_contenido").innerHTML = "<h6 class='card-title mb-0' > Adjunta y sube el recurso </h6>";
     if(tipoagregacion=="pdf"){
         codigo=''+        
     '<form class="d-flex mt-3 flex-wrap" id="estilo_aprendizaje" action=">'+
-        '<label class="formFile mt-3 mb-1" for="myfile"> Adjunta un recurso: </label>'+
+        '<label class="formFile mt-3 mb-1" for="myfile"> Adjunta un recurso en formato PDF: </label>'+
         '<input class="form-control mb-3" type="file" id="myfile" name="myfile">'+
                     
         '<div class="card me-3">'+
             '<div class="card-header text-white bg-primary">'+
-                '<b class="m-0">cohorte</b>'+
+                '<b class="m-0">Cohorte recomendada: Visual</b>'+
             '</div>'+
             '<div class="card-body border border-primary">'+
                 '<select class="form-select" name="select_aprendizaje" id="selector1" >'+
                     '<option value="Visual" selected>Cohorte Visual</option>'+
                     '<option value="Auditivo">Cohorte Auditivo</option>'+
-                    '<option value="Kinestetico">Cohorte Kinestetico</option>'+
-                    '<option value="Seleccionar" selected>Seleccionar</option>'+
+                    '<option value="Kinestetico">Cohorte Kinestetico</option>'+                    
+                '</select>'+
+            '</div>'+
+        '</div>'+        
+                       
+        '</form>'+
+        '<p class="bd-callout bd-callout-warning mt-4 mb-1" id="nota-importante"><span>Nota:</span> Recuerda que debes escoger una cohorte.</p>';
+        
+        //console.log(codigo)
+        document.getElementById("agregarcontenido").innerHTML = codigo;
+    }
+    if(tipoagregacion=="video"){
+        codigo=''+        
+    '<form class="d-flex mt-3 flex-wrap" id="estilo_aprendizaje" action=">'+
+        '<label class="formFile mt-3 mb-1" for="myfile"> Adjunta un recurso en formato video: </label>'+
+        '<input class="form-control mb-3" type="file" id="myfile" name="myfile">'+
+                    
+        '<div class="card me-3">'+
+            '<div class="card-header text-white bg-primary">'+
+                '<b class="m-0">Cohorte recomendada: Kinestética</b>'+
+            '</div>'+
+            '<div class="card-body border border-primary">'+
+                '<select class="form-select" name="select_aprendizaje" id="selector1" >'+
+                    '<option value="Visual">Cohorte Visual</option>'+
+                    '<option value="Auditivo">Cohorte Auditivo</option>'+
+                    '<option value="Kinestetico" selected>Cohorte Kinestetico</option>'+                    
+                '</select>'+
+            '</div>'+
+        '</div>'+        
+                       
+        '</form>'+
+        '<p class="bd-callout bd-callout-warning mt-4 mb-1" id="nota-importante"><span>Nota:</span> Recuerda que debes escoger una cohorte.</p>';
+        
+        //console.log(codigo)
+        document.getElementById("agregarcontenido").innerHTML = codigo;
+    }
+    if(tipoagregacion=="audio"){
+        codigo=''+        
+    '<form class="d-flex mt-3 flex-wrap" id="estilo_aprendizaje" action=">'+
+        '<label class="formFile mt-3 mb-1" for="myfile"> Adjunta un recurso en formato audio: </label>'+
+        '<input class="form-control mb-3" type="file" id="myfile" name="myfile">'+
+                    
+        '<div class="card me-3">'+
+            '<div class="card-header text-white bg-primary">'+
+                '<b class="m-0">Cohorte recomendada: Auditiva</b>'+
+            '</div>'+
+            '<div class="card-body border border-primary">'+
+                '<select class="form-select" name="select_aprendizaje" id="selector1" >'+
+                    '<option value="Visual" >Cohorte Visual</option>'+
+                    '<option value="Auditivo" selected>Cohorte Auditivo</option>'+
+                    '<option value="Kinestetico">Cohorte Kinestetico</option>'+                    
+                '</select>'+
+            '</div>'+
+        '</div>'+        
+                       
+        '</form>'+
+        '<p class="bd-callout bd-callout-warning mt-4 mb-1" id="nota-importante"><span>Nota:</span> Recuerda que debes escoger una cohorte.</p>';
+        
+        //console.log(codigo)
+        document.getElementById("agregarcontenido").innerHTML = codigo;
+    }
+    if(tipoagregacion=="imagen"){
+        codigo=''+        
+    '<form class="d-flex mt-3 flex-wrap" id="estilo_aprendizaje" action=">'+
+        '<label class="formFile mt-3 mb-1" for="myfile"> Adjunta un recurso en formato imagen: </label>'+
+        '<input class="form-control mb-3" type="file" id="myfile" name="myfile">'+
+                    
+        '<div class="card me-3">'+
+            '<div class="card-header text-white bg-primary">'+
+                '<b class="m-0">Cohorte recomendada: Visual</b>'+
+            '</div>'+
+            '<div class="card-body border border-primary">'+
+                '<select class="form-select" name="select_aprendizaje" id="selector1" >'+
+                    '<option value="Visual" selected>Cohorte Visual</option>'+
+                    '<option value="Auditivo">Cohorte Auditivo</option>'+
+                    '<option value="Kinestetico">Cohorte Kinestetico</option>'+                    
                 '</select>'+
             '</div>'+
         '</div>'+        
