@@ -14,7 +14,14 @@ function ReglasEstudiante(runtime, element) {
             data: "null",
             success: function (data) {
                 window.test = data.test;
-                
+                var dim1=""
+                var dim2=""
+                var dim3=""
+                var resultado1 = document.getElementById("resultado1")
+                var resultado2 = document.getElementById("resultado2")
+                var resultado3 = document.getElementById("resultado3")
+                                                     
+                                                              
                 if (data.test_result) {
                     
                     var resultado = data.test_result.result
@@ -30,15 +37,21 @@ function ReglasEstudiante(runtime, element) {
                         var cohorte= "Kinestetico";
                         console.log(cohorte)
                     }
+                    $("#cohorteasignacion").append('<b>' +cohorte+'</b>')
                     recursoLoad=cohorte;
                    
-                    //resultado = resultado.replaceAll("<br>"," ").split(" ")
-                    
-                    
+                    resultadotext = resultado.replaceAll("<br>","").split(" ")
+                    console.log(resultado)                    
+                    dim1=resultadotext[3]
+                    dim2=resultadotext[5]
+                    dim3=resultadotext[7]
+                    resultado1.innerText=dim1
+                    resultado2.innerText=dim2
+                    resultado3.innerText=dim3
                     //console.table(resultado);
 
                     
-                    $("#test").append('<p> Tu test ha revelado que eres: <br><b>' +data.test_result.result+'</p>')
+                    $("#testresult").append('<p><br><b>' +resultadotext[0]+resultadotext[1]+'</p>')
                                    
                     var options = {
                         responsive: false,
@@ -64,28 +77,20 @@ function ReglasEstudiante(runtime, element) {
             success: function(data){
                 window.test = data.test;
                 console.table(data)
-                setTimeout(function(){
-                    //console.log(tagcohorte[14])
-                    for(k=0; k<(data.length); k++){
-                        //console.log(data[k].tag)
-                        //console.log(recursoLoad)         
+                var recursos=""
+                setTimeout(function(){                    
+                    for(k=0; k<(data.length); k++){                                
                         if(data[k].tag==recursoLoad){
-                            var recursos=data[k].resource;                            
+                            recursos=recursos+data[k].resource+'<br>';                            
                             console.log(data[k].resource)
                         }
-                    }
-                    
-                    var resources_list = document.getElementById('resources_allowed')
+                    }                    
+                    var resources_list = document.getElementById('recursoscohorte')
                     resources_list.innerHTML = ''
 
                     tag_estudiante = tag.split("-")
                     
-                    //console.table(data)
-                    
-                    //console.log(resources_allowed);
-                    //var recursos=resources_allowed.map(item => "<br>"+item.resource)
-
-                    resources_list.innerHTML = "Tus recursos están disponibles en: "+recursos
+                    resources_list.innerHTML = "<b>Repositorio </b><br>"+recursos
                 },100)
                 
             }

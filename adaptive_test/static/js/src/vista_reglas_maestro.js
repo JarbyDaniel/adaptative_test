@@ -21,8 +21,6 @@ function ReglasMaestro(runtime, element) {
             }
         }
 
-
-
         $.ajax({
             type: "POST",
             url: handlerUrl,
@@ -66,8 +64,7 @@ function agregarcontenido(a){
                     '<option value="Seleccionar" selected>Seleccionar</option>'+
                 '</select>'+
             '</div>'+
-        '</div>'+
-        
+        '</div>'+        
                        
         '</form>'+
         '<p class="bd-callout bd-callout-warning mt-4 mb-1" id="nota-importante"><span>Nota:</span> Recuerda que debes escoger una cohorte.</p>';
